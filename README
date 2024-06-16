@@ -47,3 +47,12 @@ You will need a RISC-V "newlib" tool chain from
 https://github.com/riscv/riscv-gnu-toolchain, and qemu compiled for
 riscv64-softmmu.  Once they are installed, and in your shell
 search path, you can run "make qemu".
+
+---
+
+For the purpose of learning operating systems and considering the strong playability of xv6, here is a plan for modifying xv6. Specific details can be found on other branches of xv6-riscv:
+
+- [ ] `xv6-refactor`: Constructing xv6 from scratch to experience the evolution of an entire operating system.
+- [ ] `xv6-BPIF3`: Porting xv6-riscv to the BPI-F3 open board.
+- [ ] `xHyper`: xv6 can actually serve as a framework for a type 1 hypervisor. I plan to reuse some of the code from xv6 and develop components related to CPU, memory, and interrupt virtualization.
+- [ ] Are there any more interesting ideas?...
