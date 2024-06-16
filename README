@@ -48,7 +48,7 @@ https://github.com/riscv/riscv-gnu-toolchain, and qemu compiled for
 riscv64-softmmu.  Once they are installed, and in your shell
 search path, you can run "make qemu".
 
----
+> some new things 👏👏👏
 
 For the purpose of learning operating systems and considering the strong playability of xv6, here is a plan for modifying xv6. Specific details can be found on other branches of xv6-riscv:
 
