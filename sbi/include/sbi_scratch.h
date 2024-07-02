@@ -6,7 +6,7 @@
 
 /** Offset of various member in sbi_scratch */
 #define SBI_SCRATCH_FW_START_OFFSET     (0 * __SIZEOF_POINTER__)
-#define SBI_SCRATCH_FW_SIZE_OFFSTET      (1 * __SIZEOF_POINTER__)
+#define SBI_SCRATCH_FW_SIZE_OFFSTET     (1 * __SIZEOF_POINTER__)
 #define SBI_SCRATCH_HEAP_OFFSET         (2 * __SIZEOF_POINTER__)
 #define SBI_SCRATCH_HEAP_SIZE_OFFSET    (3 * __SIZEOF_POINTER__)
 #define SBI_SCRATCH_NEXT_ADDR_OFFSET    (4 * __SIZEOF_POINTER__)
