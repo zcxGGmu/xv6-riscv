@@ -7,10 +7,14 @@
 #include "sbi_scratch.h"
 #include "sbi_const.h"
 
+.macro MOV_3R __d0, __s0, __d1, __s1, __d2, __s2
+    add \__d0, \__s0, zero
+    add \__d1, \__s1, zero
+    add \__d2, \__s2, zero
+.endm
+
 _start:
-    /* SMP Handle */
-    
-    
+    /* SMP Handle */    
 _bss_zero:
     /* Zero-out BSS */
     lla s4, _bss_start
@@ -71,11 +75,38 @@ _scratch_init:
     REG_S   s10, SBI_SCRATCH_HEAP_OFFSET(tp)
     REG_S   s9, SBI_SCRATCH_HEAP_SIZE_OFFSET(tp)
 
+    /* Store next address in sratch space */
+    MOV_3R  s0, a0, s1, a1, s2, a2
+    call    x_sbi_next_addr
+    REG_S   a0, SBI_SCRATCH_NEXT_ADDR_OFFSET(tp)
+    MOV_3R  a0, s0, a1, s1, a2, s2
+
+    /* Store next mode in sratch space */
+    MOV_3R  s0, a0, s1, a1, s2, a2
+    call    x_sbi_next_mode
+    REG_S   a0, SBI_SCRATCH_NEXT_MODE_OFFSET(tp)
+    MOV_3R  a0, s0, a1, s1, a2, s2
     
+    /* TODO: FDT releated */
+    
+    /* Update the mscratch */
+    csrw    CSR_MSCRATCH, tp
+    /* Setup stack */
+    add     sp, tp, zero
+    /* Setup tarp handler */
+    lla     a4, _trap_handler       // _trap_handler => entry.S
+    csrw    CSR_MTVEC, a4
+    /* Initialize SBI runtime */
+    csrr    a0, CSR_MSCRATCH
+    call    x_sbi_main              // sbi_init
+    /** Enter C Routine */
+    
+    /* We don't expect to reach here hence just hang */
+    j       _start_hang
 
-
-
-/* TODO: FDT releated */
-
-
-/* Enter C Routine */
+    .section .entry, "ax", %progbits
+    .align 3
+    .global _start_hang
+_start_hang:
+    wfi
+    j       _start_hang

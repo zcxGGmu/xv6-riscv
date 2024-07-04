@@ -18,6 +18,9 @@
 #define REG_L 	__REG_SEL(ld, lw)
 #define REG_S 	__REG_SEL(sd, sw)
 
+/* Get current HART id */
+#define current_hartid()	((unsigned int)csr_read(CSR_MHARTID))
+
 #ifndef __ASSEMBLER__
 
 #define csr_read(csr)                                           \
@@ -28,6 +31,15 @@
 				     :                          \
 				     : "memory");               \
 		__v;                                            \
+	})
+
+#define csr_write(csr, val)                                        \
+	({                                                         \
+		unsigned long __v = (unsigned long)(val);          \
+		__asm__ __volatile__("csrw " __ASM_STR(csr) ", %0" \
+				     :                             \
+				     : "rK"(__v)                   \
+				     : "memory");                  \
 	})
 
 #endif /* !__ASSEMBLER__ */
