@@ -38,4 +38,55 @@
 #define PRV_S           _UL(1)
 #define PRV_M           _UL(2)
 
+/* ===== Supervisor-level CSRs ===== */
+#define CSR_SSTATUS         0x100
+#define CSR_SIE             0x104
+#define CSR_STVEC           0x105
+#define CSR_SCOUNTEREN      0x106
+
+/* Supervisor Trap Setup */
+#define CSR_SENVCFG         0x10a
+
+/* Supervisor Counter Inhibit */
+#define CSR_SCOUNTINHIBIT   0x120
+
+/* Supervisor Trap Handling */
+#define CSR_SSCRATCH        0x140
+#define CSR_SEPC            0x141
+#define CSR_SCAUSE          0x142
+#define CSR_STVAL           0x143
+#define CSR_SIP             0x144
+
+/* Supervisor Protection and Translation */
+#define CSR_SATP			0x180
+
+/* ===== MSTATUS bits settings for RV64 ===== */
+#define MSTATUS_SIE             _UL(0x00000002)
+#define MSTATUS_MIE             _UL(0x00000008)
+#define MSTATUS_SPIE_SHIFT      5
+#define MSTATUS_SPIE            (_UL(1) << MSTATUS_SPIE_SHIFT)
+#define MSTATUS_UBE			    _UL(0x00000040)
+#define MSTATUS_MPIE			_UL(0x00000080)
+#define MSTATUS_SPP_SHIFT		8
+#define MSTATUS_SPP			    (_UL(1) << MSTATUS_SPP_SHIFT)
+#define MSTATUS_MPP_SHIFT		11
+#define MSTATUS_MPP			    (_UL(3) << MSTATUS_MPP_SHIFT)
+#define MSTATUS_FS			    _UL(0x00006000)
+#define MSTATUS_XS			    _UL(0x00018000)
+#define MSTATUS_VS			    _UL(0x00000600)
+#define MSTATUS_MPRV			_UL(0x00020000)
+#define MSTATUS_SUM			_UL(0x00040000)
+#define MSTATUS_MXR			_UL(0x00080000)
+#define MSTATUS_TVM			_UL(0x00100000)
+#define MSTATUS_TW			_UL(0x00200000)
+#define MSTATUS_TSR			_UL(0x00400000)
+#define MSTATUS32_SD		_UL(0x80000000)
+#define MSTATUS_UXL			    _ULL(0x0000000300000000)
+#define MSTATUS_SXL			    _ULL(0x0000000C00000000)
+#define MSTATUS_SBE			    _ULL(0x0000001000000000)
+#define MSTATUS_MBE			    _ULL(0x0000002000000000)
+#define MSTATUS_GVA			    _ULL(0x0000004000000000)
+#define MSTATUS_GVA_SHIFT	    38
+#define MSTATUS_MPV			    _ULL(0x0000008000000000)
+
 #endif
