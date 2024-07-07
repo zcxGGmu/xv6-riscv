@@ -18,6 +18,7 @@ x_sbi_init_entry(struct sbi_scratch *scratch, u32 hartid)
     if (ret)
         sbi_hart_hang();
 
+    /** TODO */
     ret = sbi_hsm_init(scratch, hartid);
     if (ret)
         sbi_hart_hang();
